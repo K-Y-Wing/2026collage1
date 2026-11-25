@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="2026年の思い出をスクラップブック風コラージュにする画像生成プロンプト">
+<title>私の2026年の思い出コラージュ</title>
+<style>
+:root { --ink:#243342; --accent:#376b59; --bg:#f5f7f5; --panel:#fff; --line:#d8e2dc; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:"Meiryo","Hiragino Kaku Gothic ProN",sans-serif; color:var(--ink); background:var(--bg); line-height:1.8; font-size:18px; }
+main { width:min(900px,100%); margin:0 auto; padding:24px 16px 40px; }
+header { text-align:center; padding:24px 16px 18px; }
+h1 { font-size:clamp(26px,5vw,36px); line-height:1.45; margin:0 0 12px; }
+header p { margin:0; font-size:18px; }
+.panel { background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:22px; margin:18px 0; box-shadow:0 2px 10px rgba(20,40,30,.04); }
+h2 { font-size:23px; margin:0 0 12px; }
+.instructions { background:#edf4ef; border-radius:12px; padding:16px; }
+.instructions p { margin:0; }
+.prompt { white-space:pre-wrap; overflow-wrap:anywhere; background:#fbfcfb; border:1px solid var(--line); border-radius:12px; padding:18px; font-size:17px; line-height:1.85; }
+button { font-family:inherit; cursor:pointer; border:0; border-radius:14px; padding:17px 20px; font-size:20px; font-weight:700; width:100%; min-height:60px; }
+.copy { color:white; background:var(--accent); margin:16px 0 8px; }
+.copy:focus-visible { outline:3px solid #e1a84a; outline-offset:3px; }
+.status { text-align:center; min-height:1.8em; font-weight:bold; color:var(--accent); }
+.howto ol { padding-left:1.5em; margin:8px 0; }
+.howto li { margin:6px 0; }
+.small { font-size:15px; color:#52616b; }
+footer { text-align:center; font-size:14px; color:#52616b; padding:10px; }
+@media(max-width:600px){ body{font-size:17px;} main{padding:14px 12px 28px;} .panel{padding:16px;} .prompt{font-size:16px;padding:14px;} button{font-size:19px;} }
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>私の2026年の思い出を<br>コラージュにする</h1>
+<p>思い出をまとめた文章を貼り付けて、<br>AIにコラージュ画像を作ってもらいます。</p>
+</header>
+<section class="panel instructions">
+<h2>使い方</h2>
+<p>下の「プロンプトをコピー」ボタンを押します。生成AIの入力欄に貼り付け、インタビューで整理した思い出の文章も続けて貼り付けて送信してください。</p>
+</section>
+<section class="panel">
+<h2>コピーするプロンプト</h2>
+<div id="prompt" class="prompt"># 私の2026年の思い出をコラージュにする
+
+私が振り返った2026年の思い出をもとに、1枚のコラージュ画像を作成してください。
+
+## 画像の目的
+私が2026年に経験した、心に残る出来事や日常のひとときを、1枚の画像の中にまとめて表現するものです。
+
+## 画像の作成ルール
+
+- 私が話した思い出をもとに、各出来事の情景を写真のように自然でリアルな表現で作成してください。
+- 観光地、建物、食べ物、花、風景、物などは、イラスト風に変えず、実際の写真に近い質感や色彩で表現してください。
+- 思い出が複数ある場合は、それぞれの情景がわかるように、画面の中にバランスよく配置してください。
+- 思い出が1つまたは2つの場合は、無理に場面を増やさず、その思い出を中心に構成してください。
+- 画像全体は、思い出の写真を紙に貼り合わせたスクラップブックのようなデザインにしてください。
+- 写真の周囲に、紙片、マスキングテープ、手書き風の小さな装飾などを控えめに加え、温かみのあるアルバムのような雰囲気にしてください。
+- 写真部分は写真風のリアルな表現を保ち、イラストや絵画風に変えないでください。
+- 色彩は自然で柔らかく、落ち着いた印象にしてください。
+- それぞれの思い出が独立した場面として表現されながら、全体として1枚の作品にまとまるようにしてください。
+- 私が話していない人物、出来事、場所、物などを勝手に追加しないでください。
+- 実際の写真を送っていない場合は、特定の人物の顔を再現しようとせず、一般的な人物の描写で表現してください。人物が実際の私や家族、友人と異なる場合があることを理解しています。
+- 画像の中に文字、数字、タイトル、署名、透かしを入れないでください。
+
+## 思い出の内容
+
+以下の思い出をもとに、コラージュ画像を作成してください。
+
+（ここにAIが整理した思い出を貼り付けます）
+</div>
+<button id="copyButton" class="copy" type="button">プロンプトをコピー</button>
+<div id="status" class="status" aria-live="polite"></div>
+</section>
+<section class="panel howto">
+<h2>コピーした後は</h2>
+<ol>
+<li>インタビューを行った生成AIの画面を開きます。</li>
+<li>入力欄にコピーしたプロンプトを貼り付けます。</li>
+<li>「思い出の内容」のところに、AIが整理した思い出も貼り付けます。</li>
+<li>文章を送信し、コラージュ画像を生成します。</li>
+</ol>
+<p class="small">※AIが作る人物は、実際のご本人やご家族、友人とは異なる場合があります。AIが話をもとに想像して表現した画像です。</p>
+</section>
+<footer>パソコンボランティアWing</footer>
+</main>
+<script>
+const copyButton = document.getElementById('copyButton');
+const promptText = document.getElementById('prompt').innerText;
+const status = document.getElementById('status');
+copyButton.addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(promptText);
+    status.textContent = 'コピーしました。生成AIの入力欄に貼り付けてください。';
+  } catch (err) {
+    const area = document.createElement('textarea');
+    area.value = promptText;
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.focus();
+    area.select();
+    try {
+      const ok = document.execCommand('copy');
+      status.textContent = ok ? 'コピーしました。生成AIの入力欄に貼り付けてください。' : 'コピーできませんでした。文章を選択してコピーしてください。';
+    } catch (e) {
+      status.textContent = 'コピーできませんでした。文章を選択してコピーしてください。';
+    }
+    area.remove();
+  }
+});
+</script>
+</body>
+</html>
